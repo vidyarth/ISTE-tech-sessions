@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>gpa calculator</title>
+        <style>
+        
+           input{
+               width: 250px;
+               height: 30px;
+               font-size: 18px;
+               border: black;
+           } 
+           button:hover{
+               width: 100px;
+               height: 60px;
+               font-size: 15px;
+               background-color:rgb(6, 238, 255);
+               color: #000;
+               font-weight: bold;
+           }
+           #container{
+                font-weight: bold;
+            }
+           button{
+               width: 100px;
+               height: 60px;
+               font-size: 15px;
+               background-color: rgb(12, 0, 0);
+               color: rgb(6, 238, 255);
+               font-weight: bold;
+           }
+           form{
+               text-align: center;
+           }
+           #heading{
+               background-color: black;
+               color: rgb(6, 238, 255);
+               text-align: center;
+               font-size: 22px;
+               height: 50px;
+           }
+        </style>
+    </head>
+    <body>
+        <div id='heading'>
+            <h1>GPA CALCULATOR</h1>
+        </div>
+        <form  name="myform" method="post">
+  
+            <h2>Enter the number of subjects:</h2>
+            <input name="subjectsnumber" id="number" type="text" placeholder="Enter the number of subjects"><br/><br/>
+            <button type = 'button' href = '#' id="names" onclick="addFields();">Enter marks</button>
+            <h1></h1>
+            <div id='container'/>
+            </div>
+            <button type = 'button' href="#" id="names" onclick="gpa();">get gpa</button>
+            <h1></h1>
+            <div id = 'output'/>
+            </div>
+            <br/><br/>
+        </form>
+        <script>
+            function addFields() {
+                var input = '';
+                var number = document.getElementById('number').value;
+                for(var i=0;i<number;i++)
+                {
+                    input += "SUBJECT:"+(i+1) + ' ';
+                    input +="<input id='number"+i+"' name='number"+i+"' placeholder = 'Enter the marks'><br>";
+                    input += "<h2></h2>"
+                }
+                input += "<h1></h1>"
+                document.getElementById('container').innerHTML = input;
+            }
+            function gpa(){
+                var input = '';
+                var a = 0;
+                var a1 = 0;
+                var n = document.getElementById('number').value;
+                for (var i = 0; i<n; i++){
+                    a = document.getElementById('number'+i).value;
+                    a1 += parseInt(a)
+                }
+                var m = a1/n;
+                input = "<h2>Your average score is '"+m+"'</h2><br>";
+                switch (~~(m/10)){
+                    case 10:
+                    case 9:
+                        input += "<h2>Your grade is S </h2><br>";
+                        break;
+                    case 8:
+                        input += "<h2>Your grade is A </h2><br>";
+                        break;
+                    case 6:
+                    case 7:
+                        input += "<h2>Your grade is B </h2><br>";
+                        break;
+                    case 5:
+                    case 4:
+                        input += "<h2>Your grade is C </h2><br>";
+                    default:
+                        input += "<h2>Sorry you have not passed the examination </h2><br>";
+                        break;
+                }
+                document.getElementById('output').innerHTML = input;
+            }
+        </script>
+    </body>
+</html>
